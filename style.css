@@ -109,6 +109,18 @@ section {
   gap: 20px;
 }
 
+.title {
+  position: relative;
+  max-width: max-content;
+}
+
+.title img {
+  position: absolute;
+  width: 70px;
+  top: -30px;
+  left: 50%;
+}
+
 .hero-left button {
   margin-top: 20px;
 }
