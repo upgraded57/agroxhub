@@ -13,7 +13,6 @@ const fetchUsers = async () => {
     });
 
     users = await res.json();
-    console.log(users);
     usersCount.textContent = users.length;
     table.innerHTML = users
       .map((user) => {
