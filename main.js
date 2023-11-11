@@ -113,10 +113,6 @@ const postData = async (data) => {
     await fetch(`${baseUrl}/wait-list/create/`, {
       method: "POST",
       body: formData,
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
     alert("You have been added to the waitlist");
     loader.style.display = "none";
