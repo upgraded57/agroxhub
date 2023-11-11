@@ -251,7 +251,7 @@
             inputmode="numeric"
           />
           <div class="category">
-            <select>
+            <select required>
               <option value="">--Select a category--</option>
               <option value="buyer">I am a buyer</option>
               <option value="seller">I am a seller</option>
@@ -259,22 +259,42 @@
             <div class="category-options">
               <div class="category-option-buyer">
                 <label for="buyer-consumer">
-                  <input type="radio" id="buyer-consumer" name="buyer" />
+                  <input
+                    type="radio"
+                    id="buyer-consumer"
+                    name="buyer"
+                    value="consumer"
+                  />
                   <p>Consumer</p>
                 </label>
                 <label for="buyer-private">
-                  <input type="radio" id="buyer-private" name="buyer" />
+                  <input
+                    type="radio"
+                    id="buyer-private"
+                    name="buyer"
+                    value="private_business"
+                  />
                   <p>Private Business</p>
                 </label>
               </div>
 
               <div class="category-option-seller">
                 <label for="seller-farmer">
-                  <input type="radio" id="seller-farmer" name="seller" />
+                  <input
+                    type="radio"
+                    id="seller-farmer"
+                    name="seller"
+                    value="farmer"
+                  />
                   <p>Farmer</p>
                 </label>
                 <label for="seller-consumer">
-                  <input type="radio" id="seller-consumer" name="seller" />
+                  <input
+                    type="radio"
+                    id="seller-consumer"
+                    name="seller"
+                    value="private_business"
+                  />
                   <p>Private Business</p>
                 </label>
               </div>
@@ -461,6 +481,10 @@
           </div>
         </div>
       </section>
+    </div>
+
+    <div class="loader">
+      <img src="./images/loader.gif" alt="" />
     </div>
   </body>
 </html>

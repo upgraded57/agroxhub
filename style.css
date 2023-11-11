@@ -113,6 +113,10 @@ section {
   gap: 20px;
 }
 
+.about-right {
+  flex-basis: 60%;
+}
+
 .title {
   position: relative;
   max-width: max-content;
@@ -538,4 +542,51 @@ section {
   .list-form {
     width: 100%;
   }
+}
+
+/* loader */
+.loader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.loader img {
+  width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  box-shadow: 0 5px 10px lightgray;
+}
+
+/* Admin page */
+.users {
+  display: block;
+}
+/* admin table */
+table {
+  font-family: "DM Sans", sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 820px;
+}
+
+td,
+th {
+  border: 1px solid #f0f0f0;
+  text-align: left;
+  padding: 8px;
+}
+
+tr th {
+  font-weight: 700;
+  color: var(--pry-clr);
+}
+
+tr:nth-child(even) {
+  background-color: #f0f0f0;
 }

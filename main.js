@@ -62,9 +62,66 @@ const form = document.querySelector(".list-form");
 
 form.onsubmit = (e) => {
   e.preventDefault();
-  const email = form.querySelector('input[type= "email"]');
-  const phone = form.querySelector('input[type= "text"]');
-  const selectedCategory = category.value;
-  const subCategory = "";
-  console.log(selectedCategory);
+  const email = form.querySelector('input[type= "email"]').value;
+  const phone_number = form.querySelector('input[type= "text"]').value;
+  const user_type = category.value;
+  let subCategory;
+
+  buyerOptionsInputs.forEach((input) => {
+    if (input.checked) {
+      return (subCategory = input.value);
+    }
+  });
+
+  sellerOptionsInputs.forEach((input) => {
+    if (input.checked) {
+      return (subCategory = input.value);
+    }
+  });
+
+  const buyer_type = user_type === "buyer" ? subCategory : null;
+  const seller_type = user_type === "seller" ? subCategory : null;
+  const data = { email, phone_number, user_type, buyer_type, seller_type };
+
+  // remove null keys from data object
+  Object.keys(data).forEach((key) => {
+    if (data[key] === null) {
+      delete data[key];
+    }
+  });
+
+  postData(data);
+};
+
+const baseUrl = "https://farmeasyapp.azurewebsites.net/api";
+const loader = document.querySelector(".loader");
+// post data
+const postData = async (data) => {
+  loader.style.display = "flex";
+  const formData = new FormData();
+  formData.append("email", data.email);
+  formData.append("phone_number", data.phone_number);
+  formData.append("user_type", data.user_type);
+  if (data.buyer_type) {
+    formData.append("buyer_type", data.buyer_type);
+  }
+  if (data.seller_type) {
+    formData.append("seller_type", data.seller_type);
+  }
+
+  try {
+    await fetch(`${baseUrl}/wait-list/create/`, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    alert("You have been added to the waitlist");
+    loader.style.display = "none";
+  } catch (err) {
+    alert("Something went wrong! Please retry");
+    loader.style.display = "none";
+  }
 };

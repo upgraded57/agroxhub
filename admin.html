@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FARMEASY - Admin</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./admin.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <img src="./images/logo.svg" alt="logo" />
+      </div>
+    </header>
+
+    <div class="container">
+      <section class="users">
+        <h3>Registered Users</h3>
+        <table id="table">
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Email Address</th>
+              <th>Phone Number</th>
+              <th>Customer Type</th>
+              <th>Sub-Type</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </section>
+    </div>
+  </body>
+</html>
