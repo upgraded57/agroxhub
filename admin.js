@@ -80,21 +80,22 @@ const fetchUsers = async () => {
   try {
     const res = await fetch(`${baseUrl}/waitlist`, {
       method: "GET",
-      mode: "no-cors",
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
       },
     });
 
-    const users = await res.text();
-    console.log(users);
+    // const users = await res.json();
+    console.log(res);
   } catch (error) {
     console.log(error);
   }
 };
 
 fetchUsers();
-
+const usersCount = document.getElementById("usersCount");
+usersCount.textContent = users.length;
 const table = document.getElementById("tableBody");
 
 table.innerHTML = users
