@@ -566,6 +566,7 @@ section {
 /* Admin page */
 .users {
   display: block;
+  overflow-x: scroll;
 }
 /* admin table */
 table {
