@@ -1,12 +1,14 @@
 const usersCount = document.getElementById("usersCount");
 
 const table = document.getElementById("tableBody");
+const loader = document.querySelector(".loader");
 
 const baseUrl = "https://farmeasyapp.azurewebsites.net/api";
 
 // fetch users
 let users = [];
 const fetchUsers = async () => {
+  loader.style.display = "flex";
   try {
     const res = await fetch(`${baseUrl}/waitlist`, {
       method: "GET",
@@ -19,13 +21,15 @@ const fetchUsers = async () => {
         return `<tr> 
         <td> ${user.id} </td>
         <td> ${user.email} </td>
-        <td> ${user.phone_number} </td>
-        <td> ${user.seller_type || user.buyer_type} </td>
+        <td> ${user.phone_number || "N/A"} </td>
         <td> ${user.user_type} </td>
+        <td> ${user.seller_type || user.buyer_type || "N/A"} </td>
         </tr>`;
       })
       .join("");
+    loader.style.display = "none";
   } catch (error) {
+    loader.style.display = "none";
     throw new Error("Error", err);
   }
 };
