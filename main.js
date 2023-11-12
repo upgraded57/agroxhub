@@ -126,8 +126,6 @@ const postData = async (data) => {
 const banner = document.querySelector(".banner");
 const closeBtn = banner.querySelector("span");
 
-closeBtn.style.width = banner.offsetHeight / 2 + "px";
-
 closeBtn.onclick = () => {
   banner.style.opacity = 0;
   setTimeout(() => {

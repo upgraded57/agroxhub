@@ -102,6 +102,7 @@ img {
 
 .banner span {
   position: absolute;
+  width: 25px;
   right: 0;
   top: 0;
   cursor: pointer;
