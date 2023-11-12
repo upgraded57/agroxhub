@@ -121,3 +121,16 @@ const postData = async (data) => {
     loader.style.display = "none";
   }
 };
+
+// close banner
+const banner = document.querySelector(".banner");
+const closeBtn = banner.querySelector("span");
+
+closeBtn.style.width = banner.offsetHeight / 2 + "px";
+
+closeBtn.onclick = () => {
+  banner.style.opacity = 0;
+  setTimeout(() => {
+    banner.style.display = "none";
+  }, 400);
+};

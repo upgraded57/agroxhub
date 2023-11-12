@@ -90,6 +90,23 @@ img {
   margin-inline: auto;
 }
 
+.banner {
+  width: 100%;
+  height: auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear;
+}
+
+.banner span {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
 header {
   height: 70px;
   display: flex;
