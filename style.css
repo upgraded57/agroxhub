@@ -19,6 +19,7 @@ html {
 body {
   font-family: "DM Sans", sans-serif;
   color: #333333;
+  overflow-x: hidden;
 }
 
 h1 {

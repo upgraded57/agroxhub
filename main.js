@@ -123,12 +123,23 @@ const postData = async (data) => {
 };
 
 // close banner
-const banner = document.querySelector(".banner");
-const closeBtn = banner.querySelector("span");
+const banner = document.querySelectorAll(".banner");
+const closeBtn = document.querySelectorAll(".banner span");
 
-closeBtn.onclick = () => {
-  banner.style.opacity = 0;
-  setTimeout(() => {
-    banner.style.display = "none";
-  }, 400);
-};
+// closeBtn.forEach((btn) => {
+//   btn.onclick = () => {
+//     banner.style.opacity = 0;
+//     setTimeout(() => {
+//       banner.style.display = "none";
+//     }, 400);
+//   };
+// });
+
+for (let i = 0; i < banner.length; i++) {
+  closeBtn[i].onclick = () => {
+    banner[i].style.opacity = 0;
+    setTimeout(() => {
+      banner[i].style.display = "none";
+    }, 400);
+  };
+}
