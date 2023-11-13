@@ -19,7 +19,6 @@ html {
 body {
   font-family: "DM Sans", sans-serif;
   color: #333333;
-  overflow-x: hidden;
 }
 
 h1 {
@@ -426,6 +425,22 @@ section {
   text-align: left;
 }
 
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.social img {
+  width: 50px;
+}
+
 @media screen and (max-width: 768px) {
   html {
     scroll-padding-top: 0;
@@ -567,6 +582,11 @@ section {
 
   .list-form {
     width: 100%;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 10px;
   }
 }
 
