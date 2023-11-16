@@ -6,7 +6,6 @@ const loader = document.querySelector(".loader");
 const baseUrl = "https://farmeasyapp.azurewebsites.net/api";
 
 // fetch users
-let users = [];
 const fetchUsers = async () => {
   loader.style.display = "flex";
   try {
@@ -14,7 +13,7 @@ const fetchUsers = async () => {
       method: "GET",
     });
 
-    users = await res.json();
+    let users = await res.json();
     usersCount.textContent = users.length;
     table.innerHTML = users
       .map((user) => {
@@ -28,10 +27,13 @@ const fetchUsers = async () => {
       })
       .join("");
     loader.style.display = "none";
+    return users;
   } catch (error) {
     loader.style.display = "none";
     throw new Error("Error", err);
   }
 };
 
-fetchUsers();
+const users = fetchUsers();
+
+console.log(users);
