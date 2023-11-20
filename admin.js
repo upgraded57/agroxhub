@@ -22,18 +22,30 @@ const fetchUsers = async () => {
         <td> ${user.email} </td>
         <td> ${user.phone_number || "N/A"} </td>
         <td> ${user.user_type} </td>
-        <td> ${user.seller_type || user.buyer_type || "N/A"} </td>
+        <td> ${
+          (user.seller_type === "private_business" && "private business") ||
+          (user.buyer_type === "private_business" && "private business") ||
+          "N/A"
+        } </td>
         </tr>`;
       })
       .join("");
     loader.style.display = "none";
-    return users;
   } catch (error) {
     loader.style.display = "none";
     throw new Error("Error", err);
   }
 };
 
-const users = fetchUsers();
+fetchUsers();
 
-console.log(users);
+// download data
+const downloadBtn = document.getElementById("download-btn");
+
+downloadBtn.onclick = () => {
+  /* Create worksheet from HTML DOM TABLE */
+  const wb = XLSX.utils.table_to_book(table, { sheet: "sheet-1" });
+
+  /* Export to file (start a download) */
+  XLSX.writeFile(wb, "Waitlist.xlsx");
+};
