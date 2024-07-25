@@ -293,10 +293,10 @@ section {
 
 @media screen and (max-width: 500px) {
   .expect-item {
-    background: #fafafa;
+    background: rgba(255, 223, 0, 0.01);
     padding: 10px;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.02);
   }
 }
 
