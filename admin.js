@@ -3,30 +3,25 @@ const usersCount = document.getElementById("usersCount");
 const table = document.getElementById("tableBody");
 const loader = document.querySelector(".loader");
 
-const baseUrl = "https://farmeasyapp.azurewebsites.net/api";
+const baseUrl = "https://waitlist-08bk.onrender.com/users";
 
 // fetch users
 const fetchUsers = async () => {
   loader.style.display = "flex";
   try {
-    const res = await fetch(`${baseUrl}/waitlist`, {
+    const res = await fetch(`${baseUrl}`, {
       method: "GET",
     });
 
     let users = await res.json();
     usersCount.textContent = users.length;
     table.innerHTML = users
-      .map((user) => {
+      .map((user, idx) => {
         return `<tr> 
-        <td> ${user.id} </td>
-        <td> ${user.email} </td>
-        <td> ${user.phone_number || "N/A"} </td>
-        <td> ${user.user_type} </td>
-        <td> ${
-          (user.seller_type === "private_business" && "private business") ||
-          (user.buyer_type === "private_business" && "private business") ||
-          "N/A"
-        } </td>
+        <td>${idx + 1}</td>
+        <td> ${user.identifier} </td>
+        <td> ${user.category} </td>
+        <td> ${user.subCategory || "N/A"} </td>
         </tr>`;
       })
       .join("");

@@ -62,62 +62,38 @@ const form = document.querySelector(".list-form");
 
 form.onsubmit = (e) => {
   e.preventDefault();
-  const email = form.querySelector('input[type= "email"]').value;
-  const phone_number = form.querySelector('input[type= "text"]').value;
-  const user_type = category.value;
-  let subCategory;
 
-  buyerOptionsInputs.forEach((input) => {
-    if (input.checked) {
-      return (subCategory = input.value);
-    }
-  });
-
-  sellerOptionsInputs.forEach((input) => {
-    if (input.checked) {
-      return (subCategory = input.value);
-    }
-  });
-
-  const buyer_type = user_type === "buyer" ? subCategory : null;
-  const seller_type = user_type === "seller" ? subCategory : null;
-  const data = { email, phone_number, user_type, buyer_type, seller_type };
-
-  // remove null keys from data object
-  Object.keys(data).forEach((key) => {
-    if (data[key] === null) {
-      delete data[key];
-    }
-  });
+  const data = Object.fromEntries(new FormData(e.target));
 
   postData(data);
 };
 
-const baseUrl = "https://farmeasyapp.azurewebsites.net/api";
+const baseUrl = "https://waitlist-08bk.onrender.com";
+
 const loader = document.querySelector(".loader");
 // post data
 const postData = async (data) => {
   loader.style.display = "flex";
-  const formData = new FormData();
-  formData.append("email", data.email);
-  formData.append("phone_number", data.phone_number);
-  formData.append("user_type", data.user_type);
-  if (data.buyer_type) {
-    formData.append("buyer_type", data.buyer_type);
-  }
-  if (data.seller_type) {
-    formData.append("seller_type", data.seller_type);
-  }
 
   try {
-    await fetch(`${baseUrl}/wait-list/create/`, {
+    const res = await fetch(`${baseUrl}/users/register/`, {
       method: "POST",
-      body: formData,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
-    alert("You have been added to the waitlist");
-    loader.style.display = "none";
-  } catch (err) {
+
+    const response = await res.json();
+
+    alert(response.message);
+  } catch (error) {
+    if (error.message && error.message === "User Already Exists")
+      return alert("You are already registered");
+
+    console.error("There was a problem with your fetch operation:", error);
     alert("Something went wrong! Please retry");
+  } finally {
     loader.style.display = "none";
   }
 };
@@ -125,15 +101,6 @@ const postData = async (data) => {
 // close banner
 const banner = document.querySelectorAll(".banner");
 const closeBtn = document.querySelectorAll(".banner span");
-
-// closeBtn.forEach((btn) => {
-//   btn.onclick = () => {
-//     banner.style.opacity = 0;
-//     setTimeout(() => {
-//       banner.style.display = "none";
-//     }, 400);
-//   };
-// });
 
 for (let i = 0; i < banner.length; i++) {
   closeBtn[i].onclick = () => {
