@@ -19,6 +19,7 @@ const fetchUsers = async () => {
       .map((user, idx) => {
         return `<tr> 
         <td>${idx + 1}</td>
+        <td> ${user.name} </td>
         <td> ${user.identifier} </td>
         <td> ${user.category} </td>
         <td> ${user.subCategory || "N/A"} </td>
